@@ -1,0 +1,122 @@
+#include <LiquidCrystal.h>
+
+#define red 4
+#define yellow 5
+#define blue 6
+#define green 7
+#define sp1 3
+#define sp2 2
+
+/*This is a PIR sensor sheep counter with 4 led indicator
+  
+  If sheep enter in the gate the count of sheeps in will be
+  shown as in - no. and the 4 led will glow in forward direcion.
+  
+  If sheep exits out of the gate the count of sheps out will
+  be shown as out - no. and the 4 leds will glow in backward 
+  direction .
+  
+  Total number os sheeps in the field will be displayed as 
+  total - no.*/
+
+int ss1 = 0;
+int ss2 = 0;
+int count=0;
+
+LiquidCrystal lcd(13, 12, 11, 10, 9, 8);
+
+void setup(){
+	lcd.begin(16, 2);
+  		
+  	pinMode(sp1, INPUT);
+    pinMode(sp2, INPUT);
+ 	pinMode(4, OUTPUT);
+ 	pinMode(5, OUTPUT);
+ 	pinMode(6, OUTPUT);
+ 	pinMode(7, OUTPUT);}
+	
+void loop()
+{	ss1=digitalRead(sp1);
+  	ss2=digitalRead(sp2);	
+  
+ 	lcd.setCursor(0, 0);
+    lcd.println(" Sheep Counter  ");
+    lcd.setCursor(0, 1);
+    lcd.print("present sheeps ");
+	lcd.print(count);
+  	delay(200);
+ 
+ 	if(ss1==HIGH)
+     {count++; 
+     digitalWrite(red, HIGH);
+     delay(100);
+     digitalWrite(yellow, HIGH);
+     digitalWrite(red, LOW);
+     delay(100);
+     digitalWrite(blue, HIGH);
+     digitalWrite(yellow, LOW);
+     delay(100);
+     digitalWrite(green, HIGH);
+     digitalWrite(blue, LOW);
+     delay(100);
+     digitalWrite(green, LOW);
+     digitalWrite(red, HIGH);
+     delay(100);
+     digitalWrite(yellow, HIGH);
+     digitalWrite(red, LOW);
+     delay(100);
+     digitalWrite(blue, HIGH);
+     digitalWrite(yellow, LOW);
+     delay(100);
+     digitalWrite(green, HIGH);
+     digitalWrite(blue, LOW);
+     delay(100);
+     digitalWrite(green, LOW);
+     delay(100);}
+
+    if(ss2==HIGH)
+     {count--;
+     digitalWrite(green, HIGH);
+     delay(100);
+     digitalWrite(blue, HIGH);
+     digitalWrite(green, LOW);
+     delay(100);
+     digitalWrite(yellow, HIGH);
+     digitalWrite(blue, LOW);
+     delay(100);
+     digitalWrite(red, HIGH);
+     digitalWrite(yellow, LOW);
+     delay(100);
+     digitalWrite(red, LOW);
+     digitalWrite(green, HIGH);
+     delay(100);
+     digitalWrite(blue, HIGH);
+     digitalWrite(green, LOW);
+     delay(100);
+     digitalWrite(yellow, HIGH);
+     digitalWrite(blue, LOW);
+     delay(100);
+     digitalWrite(red, HIGH);
+     digitalWrite(yellow, LOW);
+     delay(100);
+     digitalWrite(red, LOW);
+     delay(100);}}
+  
+    
+	 
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      
